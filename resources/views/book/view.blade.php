@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Add Book') }}
+            {{ __('List Of Books') }}
         </h2>
     </x-slot>
     
@@ -14,8 +14,9 @@
                         <div class="sparkline13-hd">
                             <div class="main-sparkline13-hd">
                                 <h1>List<span class="table-project-n"> Of</span> Books</h1>
-                            </div>ad
+                            </div>
                         </div>
+
                         <div class="sparkline13-graph">
                             <div class="datatable-dashv1-list custom-datatable-overright">
                                 <div id="toolbar">
@@ -26,7 +27,7 @@
                                     </select>
                                 </div>
                                 <!-- Filter Data Here -->
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                <table class="table-auto" id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                     <thead>
                                         <tr>
                                             <th>Serial no.</th>
@@ -57,15 +58,15 @@
                                             <td>{{$item->description}}</td>
                                             <td>
                                                 @if ($item->availablity == 0)
-                                                <a class="btn btn-info" style="color: currentColor;cursor: not-allowed;opacity: 0.5;text-decoration: none;"> Issued by: {{$item->issuebook->first()->student->dept_id}} </a>
+                                                <x-button class="btn btn-info" style="color: currentColor;cursor: not-allowed;opacity: 0.5;text-decoration: none;"> Issued by: {{$item->issuebook->first()->student->dept_id}} </x-button>
                                                 @endif
                                                 @if ($item->availablity == 1)
-                                                <a href="{{route('issue.book',['id'=>$item->id])}}" class="btn btn-primary">Issue Book</a>
+                                                <x-button href="{{route('issue.book',['id'=>$item->id])}}" class="btn btn-primary">Issue Book</x-button>
                                                 @endif
 
-                                                <a href="" class="btn btn-info">Update</a>
+                                                <x-button href="" class="btn btn-info">Update</x-button>
                                                 
-                                                <a href="" class="btn btn-danger">Delete</a>
+                                                <x-button href="" class="btn btn-danger">Delete</x-button>
                                             </td>
                                         </tr>
 
