@@ -1,4 +1,3 @@
-
 <div class="main" style="min-height:600px;display:flex;align-items:center;padding:20px;">
     <form class="form-horizontal form-label-left" style="width:100%;margin-left:60px;" novalidate action="{{route('store.book')}}" method="post" enctype="multipart/form-data">
         @csrf

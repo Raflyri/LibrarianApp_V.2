@@ -1,4 +1,3 @@
-@extends('layouts.default')
 <div class="main" style="min-height:600px;display:flex;align-items:center;padding:20px;">
 
     <form class="form-horizontal form-label-left" style="width:100%;" novalidate action="{{route('store.student')}}" method="post" enctype="multipart/form-data">

@@ -1,4 +1,3 @@
-@extends('layouts.default')
 <div class="main" style="min-height:600px;display:flex;align-items:center;padding:20px;">
     <div class="data-table-area mg-b-15" style="margin-left:210px;width:100%;">
         <div class="container-fluid">
