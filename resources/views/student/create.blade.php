@@ -1,3 +1,10 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Add Book') }}
+        </h2>
+    </x-slot>
+
 <div class="main" style="min-height:600px;display:flex;align-items:center;padding:20px;">
 
     <form class="form-horizontal form-label-left" style="width:100%;" novalidate action="{{route('store.student')}}" method="post" enctype="multipart/form-data">
@@ -80,3 +87,4 @@
         </div>
     </form>
 </div>
+</x-app-layout>
