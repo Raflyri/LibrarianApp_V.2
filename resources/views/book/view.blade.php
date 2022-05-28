@@ -1,4 +1,11 @@
-<div class="main" style="min-height:600px;display:flex;align-items:center;padding:20px;">
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Add Book') }}
+        </h2>
+    </x-slot>
+    
+    <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
     <div class="data-table-area mg-b-15" style="margin-left:210px;width:100%;">
         <div class="container-fluid">
             <div class="row">
@@ -76,8 +83,10 @@
     </div>
     <!-- Static Table End -->
 </div>
+
 <style>
     .fixed-table-loading {
         display: none;
     }
 </style>
+</x-app-layout>
