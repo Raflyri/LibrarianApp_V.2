@@ -62,8 +62,7 @@ class studentController extends Controller
         $student->email = $request->email;
         $student->student_phone = $request->student_phone;
         $student->save();
-        //Alert::success('Success', 'New Student Register Successfully');
-        return redirect()->route('dashboard');
+        return redirect()->route('create.student')->with('message', 'New Student Register Successfully');
     }
 
     /**
@@ -108,6 +107,7 @@ class studentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student->delete();
+        return redirect()->route('create.student')->with('success','Student deleted successfully');
     }
 }

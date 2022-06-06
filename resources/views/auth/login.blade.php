@@ -10,7 +10,8 @@
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <!--x-auth-validation-errors class="mb-4" :errors="$errors" /-->
+        <x-validation-errors />
 
         <h2 class="text-4x1 font-bold text-center">Admin Login</h2>
 

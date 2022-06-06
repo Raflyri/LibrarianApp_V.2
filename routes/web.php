@@ -25,16 +25,25 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->name('dashboard');
+    })->middleware(['auth'])->name('dashboard');
+
+    Route::view('profile', 'profile')->name('profile');
+    Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+
+});
+
+require __DIR__.'/auth.php';
+
+/*Route::group(['middleware' => 'auth:admin'], function() {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->middleware(['auth'])->name('admin.dashboard');
 
     Route::view('profile', 'profile')->name('profile');
     Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])
         ->name('profile.update');
 
-   Route::resource('tasks', \App\Http\Controllers\TaskController::class);
-});
-
-require __DIR__.'/auth.php';
+});*/
 
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
@@ -42,7 +51,8 @@ Route::get('/admin/dashboard', function () {
 
 require __DIR__.'/adminauth.php';
 
-
+Route::get('upload', 'App\Http\Controllers\FileUploadController@index');
+Route::post('upload', 'App\Http\Controllers\FileUploadController@upload')->name('upload');
 
 //Route::resource('book', bookController::class);
 
@@ -51,7 +61,7 @@ Route::get('/createbook', ['uses'=>'App\Http\Controllers\bookController@create',
 
 Route::get('/viewbook', ['uses'=>'App\Http\Controllers\bookController@index','as' => 'view.book']);
 
-Route::post('/storebook', ['uses'=>'App\Http\Controllers\bookController@store','as'=>'store.book']);
+Route::get('/storebook', ['uses'=>'App\Http\Controllers\bookController@store','as'=>'store.book']);
 
 // Book Issue
 Route::get('/createissue/{id}',['uses'=>'App\Http\Controllers\issueController@create','as'=>'issue.book']);

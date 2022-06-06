@@ -25,15 +25,15 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('view.book')" :active="request()->routeIs('viewbook')">
-                        {{ __('Search Books') }}
+                        {{ __('Book List') }}
                     </x-nav-link>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <!--div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('store.book')" :active="request()->routeIs('storebook')">
                         {{ __('Issue Books') }}
                     </x-nav-link>
-                </div>
+                </div-->
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('create.student')" :active="request()->routeIs('createstudent')">
@@ -43,7 +43,7 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('view.student')" :active="request()->routeIs('viewstudent')">
-                        {{ __('View Student') }}
+                        {{ __('Student List') }}
                     </x-nav-link>
                 </div>
 
@@ -73,8 +73,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();this.closest('form').submit();">
                                 {{ __('Log out') }}
                             </x-dropdown-link>
                         </form>

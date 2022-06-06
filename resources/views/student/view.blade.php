@@ -1,15 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Add Book') }}
+            {{ __('List Of Student') }}
         </h2>
     </x-slot>
 
-<div class="main" style="min-height:600px;display:flex;align-items:center;padding:20px;">
-    <div class="data-table-area mg-b-15" style="margin-left:210px;width:100%;">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <x-validation-errors />
+                    <x-success-message />
                     <div class="sparkline13-list">
                         <div class="sparkline13-hd">
                             <div class="main-sparkline13-hd">
@@ -25,11 +26,7 @@
                                         <option value="selected">Export Selected</option>
                                     </select>
                                 </div>
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true"
-                                    data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true"
-                                    data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                    data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true"
-                                    data-toolbar="#toolbar">
+                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                     <thead>
                                         <tr>
                                             <th>Serial no.</th>
@@ -43,13 +40,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @if (isset($student))
-                                    @php
+                                        @if (isset($student))
+                                        @php
                                         $i = 0;
-                                    @endphp
+                                        @endphp
                                         @foreach ($student as $item)
                                         @php
-                                            $i++;
+                                        $i++;
                                         @endphp
 
 
@@ -61,11 +58,17 @@
                                             <td>{{$item->session}}</td>
                                             <td>{{$item->email}}</td>
                                             <td>{{$item->student_phone}}</td>
-                                            <td><a href="" class="btn btn-info">Update</a> <a href="" class="btn btn-danger">Delete</a> </td>
+                                            <td>
+                                                <x-button href="" class="btn btn-info">Update</x-button>
+
+                                                @csrf
+                                                @method('DELETE')
+                                                <x-button >{{ __('Delete') }}</x-button>
+                                            </td>
                                         </tr>
 
                                         @endforeach
-                                    @endif
+                                        @endif
 
                                     </tbody>
                                 </table>
@@ -77,12 +80,10 @@
         </div>
     </div>
     <!-- Static Table End -->
-</div>
-<style>
-    .fixed-table-loading{
-        display: none;
-    }
-</style>
+    </div>
+    <style>
+        .fixed-table-loading {
+            display: none;
+        }
+    </style>
 </x-app-layout>
-
-

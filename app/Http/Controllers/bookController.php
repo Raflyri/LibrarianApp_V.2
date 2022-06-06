@@ -61,8 +61,7 @@ class bookController extends Controller
         $book->book_dept = $request->book_dept;
         $book->description = $request->description;
         $book->save();
-        //Alert::success('Success', 'New Book Added Successfully');
-        return redirect()->route('dashboard');
+        return redirect()->route('create.book')->with('message', 'New Book Added Successfully');
     }
 
     /**
