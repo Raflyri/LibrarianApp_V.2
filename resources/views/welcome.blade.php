@@ -405,6 +405,23 @@
 </head>
 
 <body class="antialiased">
+    <div>
+        <div>
+            @if (Route::has('admin.login'))
+            <div class="hidden fixed top-0 left-0 px-6 py-4 sm:block">
+                @auth('admin')
+                <a href="{{ url('/admin/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Student Dashboard</a>
+                @else
+                <a href="{{ route('admin.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Student Log in</a>
+
+                @if (Route::has('register'))
+                <a href="{{ route('admin.register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Student Register</a>
+                @endif
+                @endauth
+            </div>
+            @endif
+        </div>
+    </div>
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <div>
             @if (Route::has('login'))
@@ -421,25 +438,6 @@
             </div>
             @endif
         </div>
-
-        <div>
-            @if (Route::has('admin.login'))
-            <div class="hidden fixed top-0 left-0 px-6 py-4 sm:block">
-                @auth('admin')
-                <a href="{{ url('/admin/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Student Dashboard</a>
-                @else
-                <a href="{{ route('admin.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Student Log in</a>
-
-                @if (Route::has('register'))
-                <a href="{{ route('admin.register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Student Register</a>
-                @endif
-                @endauth
-            </div>
-            @endif
-
-        </div>
-
-
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
 

@@ -9,24 +9,40 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <x-validation-errors />
-                    <x-success-message />
+                    //<x-validation-errors />
+                    //<x-success-message />
+
+                    <div>
+
+                    <!-- print success message after file upload  -->
+                    @if(Session::has('success'))
+                            <div class="alert alert-success">
+                                {{ Session::get('success') }}
+                                @php
+                                    Session::forget('success');
+                                @endphp
+                            </div>
+                        @endif
 
                     <form method="post" action="{{ route('upload') }}" enctype="multipart/form-data">
-                            {{ csrf_field() }}
+                        {{ csrf_field() }}
 
-                            <div class="form-group">
-                                <label for="title">Image/file</label>
-                                <input type="file" name="files[]" class="form-control-file" multiple="">
-                                @if($errors->has('files'))
-                                    <span class="help-block text-danger">{{ $errors->first('files') }}</span>
-                                @endif
-                            </div>
+                        <div class="form-group">
+                            <label for="title">Image/file</label>
+                            <input type="file" name="files[]" class="form-control-file" multiple="">
+                            @if($errors->has('files'))
+                            <span class="help-block text-danger">{{ $errors->first('files') }}</span>
+                            @endif
+                        </div>
 
-                            <div class="text-center">
-                                <x-button class="btn btn-primary">Upload</x-button>
-                            </div>
-                        </form>
+                        <div class="text-center">
+                            <button class="btn btn-primary">Upload</button>
+                        </div>
+                    </form>
+
+                    </div>
+
+                    
                 </div>
             </div>
         </div>

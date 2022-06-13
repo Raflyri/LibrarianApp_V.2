@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FileUpload;
 use Illuminate\Http\Request;
 
 class FileUploadController extends Controller
 {
+    
+    
     // show form
     public function index() {
         return view('upload');
@@ -14,21 +17,22 @@ class FileUploadController extends Controller
     // file upload
     public function upload(Request $request)
     {
-        $validator = \Validator::make($request->all(), [
-            'files' => 'required'
-        ])->validate();
+        $validator = \Validator::make($request->all(), ['files' => 'required'])->validate();
 
         $total_files = count($request->file('files'));
 
         foreach ($request->file('files') as $file) {
             // rename & upload files to uploads folder
             $name = uniqid() . '_' . time(). '.' . $file->getClientOriginalExtension();
+            //echo base64_encode($file);
             $path = public_path() . '/uploads';
             $file->move($path, $name);
-
+            //$file->move($path);
+            
             // store in db
             $fileUpload = new FileUpload();
             $fileUpload->filename = $name;
+            //echo base64_encode($fileUpload);
             $fileUpload->save();
         }
 
