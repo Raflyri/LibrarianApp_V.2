@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 
 class FileUploadController extends Controller
 {
-    
-    
     // show form
     public function index() {
         return view('upload');
@@ -23,16 +21,22 @@ class FileUploadController extends Controller
 
         foreach ($request->file('files') as $file) {
             // rename & upload files to uploads folder
-            $name = uniqid() . '_' . time(). '.' . $file->getClientOriginalExtension();
-            //echo base64_encode($file);
+            $encodeImage = uniqid() . '_' . time(). '.' . $file->getClientOriginalExtension();
+            $fileName = time(). '.' .$file->getClientOriginalName();
             $path = public_path() . '/uploads';
-            $file->move($path, $name);
-            //$file->move($path);
+            $file->move($path, $fileName);
             
             // store in db
-            $fileUpload = new FileUpload();
-            $fileUpload->filename = $name;
+            $fileUpload =  Http::withHeaders([
+                'X-First' => 'foo',
+                'X-Second' => 'bar'
+            ])->post('https://api.stag.olive.onl/request', [
+                'photo' => 'Taylor',
+                'photo_base64' => $encodeImage,
+            ]);
+
             //echo base64_encode($fileUpload);
+            return-
             $fileUpload->save();
         }
 

@@ -51,6 +51,7 @@ Route::get('/admin/dashboard', function () {
 
 require __DIR__.'/adminauth.php';
 
+//Upload Task
 Route::get('upload', 'App\Http\Controllers\FileUploadController@index');
 Route::post('upload', 'App\Http\Controllers\FileUploadController@upload')->name('upload');
 
@@ -80,3 +81,6 @@ Route::get('/createstudent',['uses' =>  'App\Http\Controllers\studentController@
 Route::get('/viewstudent', ['uses'=>'App\Http\Controllers\studentController@index','as'=>'view.student']);
 
 Route::post('/storestudent', ['uses'=>'App\Http\Controllers\studentController@store','as' => 'store.student']);
+
+
+
